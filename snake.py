@@ -32,12 +32,6 @@ class Snake:
             self.turtles[i].goto(self.turtles[i - 1].xcor(), self.turtles[i - 1].ycor())
         self.head.forward(STEP)
 
-    def speed_up(self):
-        curr_speed = self.head.speed()
-        if curr_speed < 10:
-            for turtle in self.turtles:
-                turtle.speed(curr_speed+1)
-
     def expand(self):
         position = self.turtles[-1].position()
         speed = self.turtles[-1].speed()
@@ -70,3 +64,8 @@ class Snake:
 
     def left(self):
         self.head.setheading(LEFT)
+
+    def reset(self, position):
+        for turtle in self.turtles:
+            turtle.goto(position)
+        self.__init__()
